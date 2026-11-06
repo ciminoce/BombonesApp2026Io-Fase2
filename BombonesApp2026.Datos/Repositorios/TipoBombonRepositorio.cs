@@ -11,9 +11,9 @@ namespace BombonesApp2026.Datos.Repositorios
         {
         }
 
-        public bool EstaRelacionado(TipoBombon tipoBombon)
+        public bool TieneRegistrosRelacionados(int tipoId)
         {
-            return false;
+            return _context.Bombones.Any(b=>b.TipoBombonId == tipoId);
         }
 
         public bool Existe(TipoBombon tipoBombon)

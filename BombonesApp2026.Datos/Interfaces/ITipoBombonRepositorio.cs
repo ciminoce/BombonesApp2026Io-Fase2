@@ -6,7 +6,7 @@ namespace BombonesApp2026.Datos.Interfaces
     public interface ITipoBombonRepositorio:IRepositorioConcurrente<TipoBombon>
     {
         bool Existe(TipoBombon tipoBombon);
-        bool EstaRelacionado(TipoBombon tipoBombon);
+        bool TieneRegistrosRelacionados(int tipoId);
         int ObtenerPosicionRegistro(int seleccionadoId,
             Expression<Func<TipoBombon, bool>>? filtrarPor=null);
     }

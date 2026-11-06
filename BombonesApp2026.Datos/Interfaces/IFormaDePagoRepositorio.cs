@@ -5,6 +5,6 @@ namespace BombonesApp2026.Datos.Interfaces
     public interface IFormaDePagoRepositorio:IRepositorioGenerico<FormaDePago>
     {
         bool Existe(FormaDePago formaDePago);
-        bool EstaRelacionado(FormaDePago formaDePago);
+        bool TieneRegistrosRelacionados(int formaId);
     }
 }

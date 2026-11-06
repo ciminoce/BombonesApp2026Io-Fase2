@@ -107,6 +107,7 @@ namespace BombonesApp2026.Servicios.Servicios
                     }
                     producto.Stock -= itemDetalle.Cantidad;
                 }
+
                 _unitOfWork.Ventas.Agregar(venta);
                 _unitOfWork.Save();
                 return Result<int>.Success(venta.VentaId);
@@ -181,7 +182,21 @@ namespace BombonesApp2026.Servicios.Servicios
 
         public Result<List<VentaListDto>> ObtenerTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ventas = _unitOfWork.Ventas.
+                    ObtenerTodos();
+                var ventasDto = ventas.Select(v => v.ToListDto())
+                    .ToList();
+                
+                return Result<List<VentaListDto>>.Success(ventasDto);
+            }
+            catch (Exception ex)
+            {
+
+                return Result<List<VentaListDto>>.Failure(ex.Message);
+            
+            }
         }
 
         public Result Facturar(int ventaId)

@@ -35,13 +35,18 @@ namespace BombonesApp2026.Datos.Repositorios
             return (lista, cantidad);
         }
 
-        public Venta? ObtenerPorId(int ventaId)
+        public Venta? ObtenerPorId(int ventaId, bool tracked=false)
         {
-            return _context.Ventas
+            IQueryable<Venta> query = _context.Ventas
                 .Include(v => v.Cliente)
                 .Include(v => v.FormaDePago)
                 .Include(v => v.Detalles)
-                .ThenInclude(d => d.Producto)
+                .ThenInclude(d => d.Producto);
+            if (tracked)
+            {
+                return query.FirstOrDefault(v=>v.VentaId==ventaId);
+            }
+            return query.AsNoTracking()
                 .FirstOrDefault(v => v.VentaId == ventaId);
         }
 

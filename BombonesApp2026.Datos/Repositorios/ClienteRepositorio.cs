@@ -9,10 +9,9 @@ namespace BombonesApp2026.Datos.Repositorios
         {
         }
 
-        public bool EstaRelacionado(Cliente cliente)
+        public bool TieneRegistrosRelacionados(int clienteId)
         {
-            //Luego relacionar con Ventas
-            return false;
+            return _context.Ventas.Any(v=>v.ClienteId==clienteId);
         }
 
         public bool Existe(Cliente cliente)

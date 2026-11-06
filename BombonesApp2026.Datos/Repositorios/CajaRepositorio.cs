@@ -11,9 +11,9 @@ namespace BombonesApp2026.Datos.Repositorios
         {
         }
 
-        public bool EstaRelacionado(Caja caja)
+        public bool TieneRegistrosRelacionados(int cajaId)
         {
-            return false;
+            return _context.DetalleVentas.Any(d => d.ProductoId == cajaId);
         }
 
         public bool Existe(Caja caja)
@@ -43,24 +43,21 @@ namespace BombonesApp2026.Datos.Repositorios
                 .AsNoTracking()
                 .ToList();
         }
-        public override Caja? ObtenerPorId(int id)
+        public Caja? ObtenerPorId(int id, bool tracked=false)
         {
-            return _context.Cajas
+            IQueryable<Caja> query= _context.Cajas
                 .Include(c => c.Detalles)
-                .ThenInclude(d => d.Bombon)
+                .ThenInclude(d => d.Bombon);
+            if (tracked)
+            {
+                return query.FirstOrDefault(c => c.ProductoId == id);
+            }
+            return query
                 .AsNoTracking()
                 .FirstOrDefault(c => c.ProductoId == id);
-                            
-        }
-        public Caja? ObtenerCajaConDetalles(int id)
-        {
-            return _context.Cajas
-                .Include(c => c.Detalles)
-                .ThenInclude(d => d.Bombon)
-                .FirstOrDefault(c => c.ProductoId == id);
+
 
         }
-
         public void EliminarDetalle(DetalleCaja itemCaja)
         {
             _context.Set<DetalleCaja>().Remove(itemCaja);

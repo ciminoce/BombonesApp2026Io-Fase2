@@ -11,9 +11,10 @@ namespace BombonesApp2026.Datos.Repositorios
         {
         }
 
-        public bool EstaRelacionado(Bombon bombon)
+        public bool TieneRegistrosRelacionados(int bombonId)
         {
-            return false;
+            return _context.DetalleCajas.Any(d => d.BombonId == bombonId)
+                || _context.DetalleVentas.Any(v=>v.ProductoId==bombonId);
         }
 
         public bool Existe(Bombon bombon)

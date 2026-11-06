@@ -9,12 +9,11 @@ namespace BombonesApp2026.Datos.Repositorios
         {
         }
 
-        public bool EstaRelacionado(FormaDePago formaDePago)
+        public bool TieneRegistrosRelacionados(int formaId)
         {
             //luego relacionar con ventas
-            return false;
+            return _context.Ventas.Any(v => v.FormaDePagoId == formaId);
         }
-
         public bool Existe(FormaDePago formaDePago)
         {
             return _context.FormasDePago

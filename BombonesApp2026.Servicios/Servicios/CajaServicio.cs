@@ -113,7 +113,7 @@ namespace BombonesApp2026.Servicios.Servicios
             }
 
             // 2. Obtener la entidad persistida
-            var caja = _unitOfWork.Cajas.ObtenerCajaConDetalles(cajaDto.ProductoId);
+            var caja = _unitOfWork.Cajas.ObtenerPorId(cajaDto.ProductoId, true);
             if (caja == null)
             {
                 return Result.Failure("Caja no encontrada.");
