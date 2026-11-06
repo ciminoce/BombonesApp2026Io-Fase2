@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="BombonesApp2026.Datos/BombonesApp2026.Datos.csproj" Id="d771d30d-9f4e-438c-b4d0-6e654d8dbca2" />
+  <Project Path="BombonesApp2026.Entidades/BombonesApp2026.Entidades.csproj" Id="71d9db56-98d3-42bf-8e7b-781348f3a9fb" />
+  <Project Path="BombonesApp2026.Ioc/BombonesApp2026.Ioc.csproj" Id="8f9c2dca-b2af-472a-a516-bb211175ebcf" />
+  <Project Path="BombonesApp2026.Servicios/BombonesApp2026.Servicios.csproj" />
+  <Project Path="BombonesApp2026.Windows/BombonesApp2026.Windows.csproj" />
+</Solution>
