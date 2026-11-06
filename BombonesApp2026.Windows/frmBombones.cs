@@ -157,6 +157,7 @@ namespace BombonesApp2026.Windows
         {
             filtroActivo = null;
             textoBuscar = null;
+            txtBuscar.Text=string.Empty;
             tsbBuscar.BackColor = SystemColors.Control;
 
             ActualizarInformacion();

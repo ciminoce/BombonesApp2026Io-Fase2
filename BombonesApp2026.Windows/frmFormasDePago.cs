@@ -18,6 +18,7 @@ namespace BombonesApp2026.Windows
         private bool esAscendente = true;
         //para filtrar
         private bool? filtroActivo = null;
+        private string? textoBuscar = null!;
         private ServicioMensajes _servicioMensajes = new();
 
         public frmFormasDePago(IServiceProvider serviceProvider)
@@ -143,7 +144,7 @@ namespace BombonesApp2026.Windows
                             _estado.RegistrosPorPagina,
                             campoOrdenar,
                             esAscendente,
-                            filtroActivo);
+                            filtroActivo, textoBuscar);
 
                     if (resultadoConsulta.IsFailure)
                     {
@@ -163,7 +164,8 @@ namespace BombonesApp2026.Windows
                                 _estado.RegistrosPorPagina,
                                 campoOrdenar,
                                 esAscendente,
-                                filtroActivo);
+                                filtroActivo,
+                                textoBuscar);
 
                         if (resultadoConsulta.IsFailure)
                         {
@@ -219,6 +221,8 @@ namespace BombonesApp2026.Windows
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
             filtroActivo = null;
+            textoBuscar = null!;
+            txtBuscar.Text = string.Empty;
             _estado.PaginaActual = 1;
             tsbFiltrar.BackColor = SystemColors.Control;
             RecargarGrilla();
@@ -250,6 +254,14 @@ namespace BombonesApp2026.Windows
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                _servicioMensajes.Advertencia("Debe poner un texto para efectuar la búsqueda");
+            }
+            textoBuscar = txtBuscar.Text;
+            tsbBuscar.BackColor = Color.Orange;
+            _estado.PaginaActual = 1;
+            RecargarGrilla();
 
         }
     }
